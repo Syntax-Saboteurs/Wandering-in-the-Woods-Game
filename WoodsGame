@@ -1,0 +1,32 @@
+# main.py
+
+class WoodsGame:
+    def __init__(self, grade_level):
+        self.grade_level = grade_level
+        self.grid_size = (0, 0)
+        self.num_players = 0
+        self.players = []
+        self.grid = []
+
+    def setup_game(self):
+        
+        pass
+
+    def start_game(self):
+        pass
+
+    def play_round(self):
+        pass
+
+    def display_statistics(self):
+        pass
+
+    def run_experiment(self):
+        pass
+
+if __name__ == "__main__":
+    grade_level = input("Enter the grade level (K-2, 3-5, or 6-8): ").strip().lower()
+    game = WoodsGame(grade_level)
+    game.setup_game()
+    game.start_game()
+    

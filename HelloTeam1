@@ -1,0 +1,2 @@
+class WoodsGame:
+    print("Hello Syntax-Saboteurs")
