@@ -1,4 +1,4 @@
-# main.py
+import random
 
 class WoodsGame:
     def __init__(self, grade_level):
@@ -7,26 +7,77 @@ class WoodsGame:
         self.num_players = 0
         self.players = []
         self.grid = []
+        self.move_counter = [0, 0]  # Counter for player moves
 
     def setup_game(self):
-        
-        pass
+        if self.grade_level == "k-2":
+            self.grid_size = (5, 5)  # square 5x5 for K-2
+            self.num_players = 2  # two players for K-2
+            self.players = [(0, 0), (4, 4)] # players at opposite corners
+            # initialize grid
+            self.grid = [['.' for _ in range(self.grid_size[1])] for _ in range(self.grid_size[0])]
+            # place players on the grid
+            for player in self.players:
+                x, y = player
+                self.grid[x][y] = 'P'
 
     def start_game(self):
-        pass
+        while True:
+            self.play_round()
+            reset = input("Do you want to play again? (yes/no): ").strip().lower()
+            if reset != "yes":
+                break
+            else:
+                self.setup_game()
 
     def play_round(self):
-        pass
+        # reset move counter for new round
+        self.move_counter = [0, 0]
+        
+        while True:
+            for i in range(self.num_players):
+                move_or_stay = self.prompt_player_move(i)
+                if move_or_stay == 'move':
+                    # randomly choose a direction
+                    direction = random.choice(['up', 'down', 'left', 'right'])
+                    # move the player
+                    self.move_player(i, direction)
+                    # increment counter for the player
+                    self.move_counter[i] += 1
+                
+                    # check if players have bumped into each other
+                    if self.players[0] == self.players[1]:
+                        self.display_statistics()
+                        return
+                elif move_or_stay == 'stay':
+                    pass  # player stays end turn
+
+    def move_player(self, player_index, direction):
+        x, y = self.players[player_index]
+        if direction == 'up' and x > 0:
+            self.players[player_index] = (x - 1, y)
+        elif direction == 'down' and x < self.grid_size[0] - 1:
+            self.players[player_index] = (x + 1, y)
+        elif direction == 'left' and y > 0:
+            self.players[player_index] = (x, y - 1)
+        elif direction == 'right' and y < self.grid_size[1] - 1:
+            self.players[player_index] = (x, y + 1)
+
+    def prompt_player_move(self, player_index):
+        while True:
+            choice = input(f"Player {player_index + 1}, do you want to move or stay? (move/stay): ").strip().lower()
+            if choice in ['move', 'stay']:
+                return choice
+            else:
+                print("Invalid choice. Please enter 'move' or 'stay'.")
 
     def display_statistics(self):
-        pass
-
-    def run_experiment(self):
-        pass
+        print("Players bumped into each other!")
+        print(f"Player 1 moves: {self.move_counter[0]}")
+        print(f"Player 2 moves: {self.move_counter[1]}")
 
 if __name__ == "__main__":
     grade_level = input("Enter the grade level (K-2, 3-5, or 6-8): ").strip().lower()
     game = WoodsGame(grade_level)
     game.setup_game()
     game.start_game()
-    
