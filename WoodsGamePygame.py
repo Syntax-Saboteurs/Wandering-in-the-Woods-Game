@@ -110,55 +110,53 @@ def level_three():
 
 
 def main():
-    
     running = True
-    
+    player_turn = 0  # 0 for player 1, 1 for player 2
+    players = [player_rect, snail_rect]  # Assuming there are only two players
+    win_font = pygame.font.SysFont(None, 48)  # Font for "You Win" message
+
     while running:
-        moved = 0
-        # pygame.QUIT event means the user clicked X to close your window
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                # can make a terminate or kill function to replace the logic here
                 running = False
 
-   
-        screen.blit(sky_surface,(0,0))
-        screen.blit(sky_surface,(0,300))
-        screen.blit(snail_surf,snail_rect)
-        screen.blit(player_surf,player_rect)
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                clicked_row = mouse_pos[1] // (HEIGHT // ROWS)
+                clicked_col = mouse_pos[0] // (WIDTH // COLS)
+                current_player_rect = players[player_turn]
+                current_row = current_player_rect.y // (HEIGHT // ROWS)
+                current_col = current_player_rect.x // (WIDTH // COLS)
 
+                # Check if the clicked position is adjacent to the current player position
+                if (abs(clicked_row - current_row) <= 1 and abs(clicked_col - current_col) <= 1 and
+                        (abs(clicked_row - current_row) != 0 or abs(clicked_col - current_col) != 0)):
+                    current_player_rect.x = clicked_col * (WIDTH // COLS)
+                    current_player_rect.y = clicked_row * (HEIGHT // ROWS)
+                    # Switch to the next player's turn
+                    player_turn = (player_turn + 1) % len(players)
 
-#when player is clicked they move TODO code diffrent directions and to stay in side barriers
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = pygame.mouse.get_pos()
-            if player_rect.collidepoint((mouse_pos)):
-                print ("mouse alien")
-                player_rect.x += 110
-            elif snail_rect.collidepoint((mouse_pos)):
-                print ("mouse snail")
-                snail_rect.x -= 110
-            else: 
-                print("missed")
+        screen.blit(sky_surface, (0, 0))
+        screen.blit(sky_surface, (0, 300))
+        screen.blit(snail_surf, snail_rect)
+        screen.blit(player_surf, player_rect)
 
-
-
-                
-          
-
-        # calls the draw_grid() fuction to create the background
         draw_grid()
-        
 
+        # Check if players overlap
+        if player_rect.colliderect(snail_rect):
+            # Display "You Win" message
+            win_text = win_font.render("You Win!", True, (255, 255, 255))
+            win_rect = win_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
+            screen.blit(win_text, win_rect)
+            # Stop the game loop
+            running = False
 
-        # updates the display
         pygame.display.update()
         clock.tick(60)
-        
 
-    # this must be in the code in order for pygame to work in idle
     pygame.quit()
     sys.exit()
-
 
 if __name__ == "__main__":
     main()
