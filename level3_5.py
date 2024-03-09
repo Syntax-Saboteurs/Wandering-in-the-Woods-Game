@@ -2,7 +2,19 @@
 resources: https://www.pygame.org/docs/
 
 '''
-
+# level_two() function - game level grades(3-5)
+    # students can set up the size of their grid, which can now also be rectangular
+    # there can be more than two players as many as four
+    # students can place them where ever they want to on the grid to start
+    # Once a pair has found eachother the pair will then search out another and another assuming more than two players
+    # Once the game is started
+        # it can be played and replayed over and over
+        # the stats of the players meeting can be displayed as:
+            # longest run without meeting
+            # shorted run without meeting
+            # and average run without meeting
+            # assuming this means for all games played  
+        
 import pygame, time, sys, random
 from pygame.locals import *
 # Constants
@@ -111,6 +123,7 @@ def level_three():
 
 def main():
     running = True
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     player_turn = 0  # 0 for player 1, 1 for player 2
     players = [player_rect, snail_rect]  # Assuming there are only two players
     win_font = pygame.font.SysFont(None, 48)  # Font for "You Win" message

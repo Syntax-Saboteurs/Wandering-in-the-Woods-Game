@@ -2,6 +2,17 @@
 resources: https://www.pygame.org/docs/
 
 '''
+# level_one() function - game level for grades(k-2) 
+    # grids are always square there are always two players starting diagonally from one another
+    # wander out randomly - assuming they control their direction
+    # each move is counted in a counter
+    # music plays as cartoon characters wander in the woods
+    # when the players bump into each other
+        # there is happy graphics displayed
+        # and stats from the wandering are displayed and announced audibly
+        # then the game is reset and the students can start it up again if they would like
+    
+    
 
 import pygame, time, sys, random
 from pygame.locals import *

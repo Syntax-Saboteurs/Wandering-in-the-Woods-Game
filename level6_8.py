@@ -2,6 +2,13 @@
 resources: https://www.pygame.org/docs/
 
 '''
+    
+# level_three() function - game level for grades(6-8)
+    # students have control of 3-5 game (level II)
+    # students will now be challanged to run experiments to determine how the average run varies with
+        # size and shape of the grids.
+    # the students will also be able to explore differnt protocols for wandering, and to decide which is
+        # the best way to wander if you want to shorten the time it takes to meet up
 
 import pygame, time, sys, random
 from pygame.locals import *
@@ -111,6 +118,7 @@ def level_three():
 
 def main():
     running = True
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
     player_turn = 0  # 0 for player 1, 1 for player 2
     players = [player_rect, snail_rect]  # Assuming there are only two players
     win_font = pygame.font.SysFont(None, 48)  # Font for "You Win" message

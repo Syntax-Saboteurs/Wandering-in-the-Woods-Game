@@ -77,8 +77,8 @@ def level6():
 Button(170, 150, 100, 50, 'K-2', levelK)
 Button(170, 200, 100, 50, '3-5', level3)
 Button(170, 250, 100, 50, '6-8', level6)
-# Button(170, 200, 100, 50,  '3-5', level3, True)
-# Button(170, 250, 100, 50,  '6-8', level6, True)
+# Button(170, 200, 100, 50,  '3-5', level3, True) multi click buttons
+# Button(170, 250, 100, 50,  '6-8', level6, True) multi click buttons
 
 #grade_level = input("Enter the grade level (K-2, 3-5, or 6-8): ").strip().lower()
 
