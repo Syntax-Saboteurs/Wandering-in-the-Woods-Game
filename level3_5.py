@@ -23,7 +23,7 @@ snail_surf = pygame.image.load('graphics/snail/snail1.png').convert_alpha()
 #snail_x_pos = 800
 snail_rect = snail_surf.get_rect(midtop = (538,524))
 
-player_surf = pygame.image.load('graphics/player/player_walk_1.png').convert_alpha()
+player_surf = pygame.image.load('graphics/ladyBug.png').convert_alpha()
 player_rect = player_surf.get_rect(midtop = (60,20))
 
 

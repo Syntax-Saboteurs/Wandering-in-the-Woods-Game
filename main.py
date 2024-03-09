@@ -1,3 +1,6 @@
+import levelk_2
+import level3_5
+import level6_8
 import pygame
 from sys import exit
 
@@ -59,12 +62,15 @@ class Button():
 
 
 def levelK():
+    levelk_2.main()
     print('K-2 Button Pressed')
 
 def level3():
+    level3_5.main()
     print('3-5 Button Pressed')
 
 def level6():
+    level6_8.main()
     print('6-8 Button Pressed')
 
 
